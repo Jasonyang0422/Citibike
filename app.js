@@ -11,6 +11,10 @@ app.get('/', function (req, res) {
     res.send('app is running, hi!');
 })
 
+app.post('/', function (req, res) {
+    console.log('>>>>>>>>>>>>>>>>>>>>');
+})
+
 app.post('/fulfillment', function (req, res) {
     console.log('app.post/fulfillment. body=', JSON.stringify(req.body));
     res.send("app is running");

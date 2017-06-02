@@ -16,5 +16,5 @@ app.post('/fulfillment', function (req, res) {
     res.send("app is running");
 });
 
-var port = process.env.port || process.env.PORT || 3000;
+var port = process.env.PORT || 3000;
 app.listen(port, () => { console.log('Chatbot application Running on port .' + port) });

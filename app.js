@@ -17,6 +17,16 @@ app.get('/', function (req, res) {
 
 app.post('/fulfillment', function (req, res) {
     console.log('app.post/fulfillment. body=', JSON.stringify(req.body));
+    if(req.body.result.action === 'send_specifc_stations') {
+        send_specifc_stations(req, res);
+    }
+
+});
+
+var port = process.env.port || process.env.PORT || 3000;
+app.listen(port, () => { console.log('Chatbot application Running on port .' + port) });
+
+function send_specifc_stations(req, res) {
     var streetArray = req.body.result.parameters['street-address'];
     var stations;
     rp(STATION_INFO_URI)
@@ -45,12 +55,8 @@ app.post('/fulfillment', function (req, res) {
         })
         .catch(function (err) {
             console.log(err);
-        })
-
-});
-
-var port = process.env.port || process.env.PORT || 3000;
-app.listen(port, () => { console.log('Chatbot application Running on port .' + port) });
+        });
+}
 
 function get_station_by_name(streetArray, stations) {
     return stations.filter(function(station) {

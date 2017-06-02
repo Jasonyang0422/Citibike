@@ -33,14 +33,14 @@ app.post('/fulfillment', function (req, res) {
                 return station['station_id'];
             });
             var all_status = get_status_by_id(ids, obj.data['stations']);
-            var message = process_status_message(stations, all_status);
-
+            return process_status_message(stations, all_status);
+        })
+        .then(function (message) {
             var response = {
                 speech: message,
                 source: "apiai-citibike",
                 displayText: message
             }
-            console.log(response);
             res.json(response);
         })
         .catch(function (err) {

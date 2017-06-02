@@ -11,13 +11,14 @@ app.get('/', function (req, res) {
     res.send('app is running, hi!');
 })
 
-app.post('/', function (req, res) {
-    console.log('>>>>>>>>>>>>>>>>>>>>');
-})
-
 app.post('/fulfillment', function (req, res) {
     console.log('app.post/fulfillment. body=', JSON.stringify(req.body));
-    res.send("app is running");
+    var json = {
+        speech: "Today in Boston: Fair, the temperature is 37 F",
+        source: "apiai-weather-webhook-sample",
+        displayText: "Today in Boston: Fair, the temperature is 37 F"
+    }
+    res.json(json);
 });
 
 var port = process.env.port || process.env.PORT || 3000;

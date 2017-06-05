@@ -9,9 +9,17 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "apiai": "^4.0.2",
+    "aws-sdk": "^2.49.0",
     "body-parser": "^1.17.2",
     "express": "^4.15.3",
-    "request": "^2.81.0",
-    "request-promise": "^4.2.1"
+    "firebase-rest": "^1.0.0",
+    "iconv": "^2.2.3",
+    "log-timestamp": "^0.1.2",
+    "moment": "^2.18.1",
+    "nexmo": "^2.0.2",
+    "node-fetch": "^1.6.3",
+    "node-uuid": "^1.4.8",
+    "require-all": "^2.2.0"
   }
 }

@@ -7,13 +7,13 @@ let express = require('express');
 let bodyParser = require('body-parser');
 let rp = require('request-promise');
 
+const sessionsManager = require('./sessionsManager');
+
 let app = express();
 app.use(bodyParser.json({ type: 'application/json' }));
 console.log("app.js created an express app");
 
-app.get('/', function (req, res) {
-    res.send('app is running, hi!');
-})
+app.all('/fb', sessionsManager.inboundFacebookEvent);
 
 app.post('/fulfillment', function (req, res) {
     console.log('app.post/fulfillment. body=', JSON.stringify(req.body));

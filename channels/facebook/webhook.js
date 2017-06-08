@@ -14,8 +14,8 @@ var sendMessageToUser = function (message, sessionId) {
   console.log("MESSAGE: ", message);
 
   switch (message.type) {
-    case sessionsManager.MESSAGE_TYPES.CUSTOME:
-      utility.sendCustomMessage(session.userId, message.payload.facebook);
+    case sessionsManager.MESSAGE_TYPES.CUSTOME: //Location Payload is through here, type = 4
+      utility.sendCustomMessage(session.userId, message.payload.facebook.attachment.payload.message);
       break;
     case sessionsManager.MESSAGE_TYPES.TEXT:
       utility.sendTextMessage(session.userId, message.speech || message.text);

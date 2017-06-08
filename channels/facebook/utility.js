@@ -420,11 +420,13 @@ function sendQuickReply(recipientId, text, quickReplyButtons) {
     message: {
       text: text,
       quick_replies: quickReplyButtons.map(function (quickReply) {
-        if (typeof (quickReply) === "string") {
+        // jason - tailored for citibike
+        if (typeof (quickReply) === "object") {
           return {
             content_type: "text",
-            title: quickReply,
-            payload: quickReply
+            // jason - tailored for citibike
+            title: quickReply.name,
+            payload: quickReply.content
           }
         }
         else {

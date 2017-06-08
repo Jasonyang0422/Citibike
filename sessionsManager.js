@@ -9,7 +9,9 @@ const EVENTS = {
     CONTACT_AGENT_MENU_ITEM: "CONTACT_AGENT_MENU_ITEM",
     DISABLE_AGENT_MENU_ITEM: "DISABLE_AGENT_MENU_ITEM",
     BOT_MODE_MENU_ITEM: "BOT_MODE_MENU_ITEM",
-    HRCHATBOT_BOT_GET_STARTED_PAYLOAD: "HRCHATBOT_BOT_GET_STARTED_PAYLOAD"
+    HRCHATBOT_BOT_GET_STARTED_PAYLOAD: "HRCHATBOT_BOT_GET_STARTED_PAYLOAD",
+    SEND_SPECIFIC_STATIONS: "SEND_SPECIFIC_STATIONS",
+    SEND_NEARBY_STATIONS: "SEND_NEARBY_STATIONS"
 };
 
 module.exports.EVENTS = EVENTS;
@@ -88,7 +90,7 @@ var getSessionByChannelEvent = (messagingEvent) => {
                 profile: {},
                 userId: messagingEvent.from,
                 lastInboundMessage: moment(),
-                botMode: BOT_MODE.CUSTOMER_SUPPORT_AGENT,
+                botMode: BOT_MODE.AUTOMATED_RESPONSES,
                 data: {}
             }
             userChannelToChatSessions[messagingEvent.from] = mappedChatSession;
@@ -254,6 +256,18 @@ const handleEvent = (sessionId, event) => {
         case EVENTS.HRCHATBOT_BOT_GET_STARTED_PAYLOAD:
             // Do nothing let agent handle get started.
             chatSessions[sessionId].botMode = BOT_MODE.CUSTOMER_SUPPORT_AGENT;
+            apiai.sendEventToApiAi(event, sessionId)
+                .then(apiairesponse => {
+                    handleApiaiResponse(apiairesponse)
+                });
+            break;
+        case EVENTS.SEND_SPECIFIC_STATIONS:
+            apiai.sendEventToApiAi(event, sessionId)
+                .then(apiairesponse => {
+                    handleApiaiResponse(apiairesponse)
+                });
+            break;
+        case EVENTS.SEND_NEARBY_STATIONS:
             apiai.sendEventToApiAi(event, sessionId)
                 .then(apiairesponse => {
                     handleApiaiResponse(apiairesponse)

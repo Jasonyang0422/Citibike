@@ -8,13 +8,21 @@
             "type": "node",
             "request": "launch",
             "name": "Launch Program",
-            "program": "${workspaceRoot}/app.js",
+            "program": "${workspaceRoot}\/app.js",
             "env": {
-                "MESSENGER_APP_SECRET": "cfb5c73a22de727d430dac999be46fae",
-                "MESSENGER_VALIDATION_TOKEN": "Bf3A5UFwBGDnH0BArN73s5y5Dvq8ix1O6A8p2IXDnoCLp184",
+                "NODE_ENV": "development",
+                "MESSENGER_APP_SECRET": "97d8f05e4f9c94ec1b853112dfe9bf20",
+                "MESSENGER_VALIDATION_TOKEN": "api.ai.citibike",
                 "MESSENGER_PAGE_ACCESS_TOKEN": "EAAGcpBjRPuQBAE82I8dFGkZApnp06BHrURylYqqJoa3vDYQGZC4O2OpPeSTI2fB66ZAkKUXbM7uqklBIG0mphDCzUrRx2kZBFEwoCRsaBZAjHDiZCwRCiC33jZApZAqbctN4sKLjZCZBt34nBJ4OMn9GOv7TKPjfT3eP6rfzRUVXNyrwZDZD",
                 "APIAI_TOKEN": "2c12159b140f48409567ece74f63448a"
             }
+        },
+        {
+            "type": "node",
+            "request": "attach",
+            "name": "Attach to Port",
+            "address": "localhost",
+            "port": 5858
         }
     ]
 }
